@@ -1,0 +1,17 @@
+{
+  "name": "tetris-poster",
+  "version": "1.0.0",
+  "description": "A keyboard Tetris game built with TypeScript and Canvas 2D",
+  "main": "index.ts",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch index.ts",
+    "start": "bun index.ts",
+    "build": "bun build src/game.ts --outfile=bundle.js --target=browser"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
