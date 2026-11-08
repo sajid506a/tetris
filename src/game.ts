@@ -110,6 +110,15 @@ class TetrisGame {
             this.start();
         });
 
+        const touchPause = document.getElementById('touch-pause');
+        touchPause!.addEventListener('click', () => {
+            if (this.state === 'RUNNING') this.pause();
+            else if (this.state === 'PAUSED') this.resume();
+        });
+        document.getElementById('touch-restart')!.addEventListener('click', () => {
+            this.start();
+        });
+
         window.addEventListener('keydown', this.onKeyDown);
         document.addEventListener('visibilitychange', () => {
             if (document.hidden && this.state === 'RUNNING') this.pause();
@@ -247,6 +256,7 @@ class TetrisGame {
         this.hideOverlays();
         this.spawn();
         this.updateStats();
+        this.setTouchPauseLabel('Pause');
         this.announce('Game started.');
     }
 
@@ -254,6 +264,7 @@ class TetrisGame {
         if (this.state !== 'RUNNING') return;
         this.state = 'PAUSED';
         this.showOverlay(this.pauseOverlay);
+        this.setTouchPauseLabel('Resume');
         this.announce('Paused.');
     }
 
@@ -261,7 +272,13 @@ class TetrisGame {
         if (this.state !== 'PAUSED') return;
         this.state = 'RUNNING';
         this.hideOverlays();
+        this.setTouchPauseLabel('Pause');
         this.announce('Resumed.');
+    }
+
+    private setTouchPauseLabel(label: string) {
+        const button = document.getElementById('touch-pause');
+        if (button) button.textContent = label;
     }
 
     private gameOver() {
@@ -273,6 +290,7 @@ class TetrisGame {
         }
         this.updateStats();
         this.finalEl.textContent = `${this.format(this.score)} points · ${this.lines} lines · level ${this.level}`;
+        this.setTouchPauseLabel('Pause');
         this.showOverlay(this.overOverlay);
         this.announce(`Game over. ${this.score} points.`);
     }

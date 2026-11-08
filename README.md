@@ -17,6 +17,8 @@ Play: https://sajid506a.github.io/tetris/
 | `P` or `Escape` | Pause |
 | `R` | Restart |
 
+On a phone, drag on the well to move or drop, tap to rotate, and use the Pause / Restart buttons under Controls.
+
 ## Scoring
 
 - Single / double / triple / tetris: 100 / 300 / 500 / 800 × level
